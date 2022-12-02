@@ -115,35 +115,230 @@ Any questions, please contact Mason, Manish , or Professor Aos!
 Thanks! 
 
               </p>
-              <p class="mx-auto tm-work-description">
+
+              <p>
                 <h3 class="tm-text-primary tm-section-title mb-4">Resource for the Comp:</h3>
-                <ol>
-                  <li>
-                    1st of all, start with setting up libraries i.e. import the necessary libraries
+              <div class="jumbotron" style="text-align: left; color:white; background-image: url(img/the-town-bg-01.jpg);">
+                <ul>
+                  <li>Start with importing the necessary libraries like,
+                    <ul>
+                      <li>
+                        import numpy as np
+                      </li>
+                      <li>
+                        import tensorflow as tf 
+                      </li>
+                      <li>
+                        import pandas as pd
+                      </li>
+                      <li>
+                        import matplotlib.pyplot as plt
+                      </li>
+                    </ul>
                   </li>
+                  <br>
                   <li>
-                    2nd, load the dataset using pandas library
+                    Then, load the data using pandas library
+                    <ul>
+                      <li>
+                        df = pd.read_csv('filename.csv')
+                      </li>
+                    </ul>
                   </li>
+                  <br>
+                  <!-- then use dataframe.iloc to separate x and y from data -->
                   <li>
-                    3rd, split the dataset into training and testing set
+                    Then, use dataframe.iloc to separate x and y from data
+                    <ul>
+                      <li>
+                        x = df.iloc[:, 0:4].values
+                      </li>
+                      <li>
+                        y = df.iloc[:, 4].values
+                      </li>
+                    </ul>
                   </li>
+                  <br>
                   <li>
-                    4th, create a model using keras library
+                    Then, use sklearn library to split the data into training and testing data(doesnt work with this easy with image classification)
+                    <ul>
+                      <li>
+                        from sklearn.model_selection import train_test_split
+                      </li>
+                      <li>
+                        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+                      </li>
+                    </ul>
                   </li>
+                  <br>
                   <li>
-                    5th, compile the model
+                    Then, use sklearn library to scale the data using MinMaxScaler or StandardScaler (pick carefully based on the data, sometimes you dont need to scale )
+                    <ul>
+                      <li>
+                        from sklearn.preprocessing import StandardScaler
+                      </li>
+                    </ul>
                   </li>
+                  <br>
                   <li>
-                    6th, train the model
-                  </li>
-                  <li>
-                    7th, evaluate the model
-                  </li>
-                </ol>
+                    Then, use tensorflow library to build the model
+                  </li>                   
+                </ul>
+              </div>
+                
+                <br>
 
               </p>
 
-          </div>            
+              <h3 style="color: red;">Code Examples will be removed from the page before the Competition!!</h3>
+
+              <p>
+                <div class="jumbotron" style="text-align: left; background-image: url(img/the-town-bg-01.jpg);">
+                  <h3 class="tm-text-primary tm-section-title mb-4">Regression Example</h3>
+                  <pre>
+                    <code style="color:white;">
+                      import tensorflow as tf
+                      import numpy as np
+                      import matplotlib.pyplot as plt
+                      import pandas as pd
+  
+                      # Importing the dataset
+                      dataset = pd.read_csv('filename.csv')
+                      X = dataset.iloc[:, 0:4].values
+                      y = dataset.iloc[:, 4].values
+  
+                      # Splitting the dataset into the Training set and Test set
+                      from sklearn.model_selection import train_test_split
+                      X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+  
+                      # Feature Scaling
+                      from sklearn.preprocessing import StandardScaler
+                      sc = StandardScaler()
+                      X_train = sc.fit_transform(X_train)
+                      X_test = sc.transform(X_test)
+  
+                      # Initialising the ANN
+                      ann = tf.keras.models.Sequential()
+  
+                      # Adding the input layer and the first hidden layer
+                      ann.add(tf.keras.layers.Dense(units=6, activation='relu'))
+  
+                      # Adding the second hidden layer
+                      ann.add(tf.keras.layers.Dense(units=6, activation='relu'))
+  
+                      # Adding the output layer
+                      ann.add(tf.keras.layers.Dense(units=1))
+  
+                      # Training the ANN
+                      # Compiling the ANN
+                      ann.compile(optimizer = 'adam', loss = 'mean_squared_error')
+  
+                      # Training the ANN on the Training set
+                      ann.fit(X_train, y_train, batch_size = 32, epochs = 100)
+                    </code>
+                  </pre>
+                </div>
+                <div class="jumbotron" style="text-align: left; background-image: url(img/the-town-bg-01.jpg);">
+                  <h3 class="tm-text-primary tm-section-title mb-4">Classification Example</h3>
+                  <!-- code for tensorflow using neural network for classification -->
+                  <pre>
+                    <code style="color:white;">
+                      import tensorflow as tf
+                      import numpy as np
+                      import matplotlib.pyplot as plt
+                      import pandas as pd
+  
+                      # Importing the dataset
+                      dataset = pd.read_csv('filename.csv')
+                      X = dataset.iloc[:, 0:4].values
+                      y = dataset.iloc[:, 4].values
+  
+                      # Splitting the dataset into the Training set and Test set
+                      from sklearn.model_selection import train_test_split
+                      X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+  
+                      # Feature Scaling
+                      from sklearn.preprocessing import StandardScaler
+                      sc = StandardScaler()
+                      X_train = sc.fit_transform(X_train)
+                      X_test = sc.transform(X_test)
+  
+                      # Initialising the ANN
+                      ann = tf.keras.models.Sequential()
+  
+                      # Adding the input layer and the first hidden layer
+                      ann.add(tf.keras.layers.Dense(units=6, activation='relu'))
+  
+                      # Adding the second hidden layer
+                      ann.add(tf.keras.layers.Dense(units=6, activation='relu'))
+  
+                      # Adding the output layer
+                      ann.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
+  
+                      # Training the ANN
+                      # Compiling the ANN
+                      ann.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+  
+                      # Training the ANN on the Training set
+                      ann.fit(X_train, y_train, batch_size = 32, epochs = 100)
+                    </code>
+                  </pre>
+                </div>
+                <div class="jumbotron" style="text-align: left; background-image: url(img/the-town-bg-01.jpg);">
+                  <!-- Handwritten digits MNIST image classification with Keras and Tensorflow with images example-->
+                  <h3 class="tm-text-primary tm-section-title mb-4">Handwritten digits MNIST image classification with Keras and Tensorflow with images example</h3>
+                  <pre>
+                    <code style="color:white;" >
+                      import tensorflow as tf 
+                      import numpy as np
+                      import pandas as pd
+                      import matplotlib.pyplot as plt
+                      from tensorflow import keras
+  
+                      # load the data
+                      num_classes = 10
+  
+                      input_size = (28,28,1)
+  
+                      (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
+  
+                      x_train  = x_train.astype("float32")/255
+                      x_test  = x_test.astype("float32")/255
+  
+                      x_train = np.expand_dims(x_train, -1)
+                      x_test = np.expand_dims(x_test, -1)
+  
+                      y_train = keras.utils.to_categorical(y_train, num_classes)
+                      y_test = keras.utils.to_categorical(y_test, num_classes)
+  
+                      # build the model
+                      model = keras.Sequential(
+                          [
+                              keras.Input(shape=input_size),
+                              keras.layers.Conv2D(32, kernel_size=(3, 3), activation="relu"),
+                              keras.layers.MaxPooling2D(pool_size=(2, 2)),
+                              keras.layers.Conv2D(64, kernel_size=(3, 3), activation="relu"),
+                              keras.layers.MaxPooling2D(pool_size=(2, 2)),
+                              keras.layers.Flatten(),
+                              keras.layers.Dense(num_classes, activation="softmax"),
+                          ]
+                      )
+  
+                      model.summary()
+  
+                      # train the model
+                      batch_size = 128
+                      epochs = 15
+  
+                      model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
+  
+                      model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_split=0.1)
+  
+                    </code>
+                  </pre>
+                </div>            
+              </p>
+              
         </div>
         
 
