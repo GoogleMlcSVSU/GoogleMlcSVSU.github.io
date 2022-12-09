@@ -122,6 +122,18 @@ Thanks!
                 <h3 class="tm-text-primary tm-section-title mb-4">Resource for the Comp:</h3>
               <div class="jumbotron" style="text-align: left; color:white; background-image: url(img/the-town-bg-01.jpg);">
                 <ul>
+                  >> Download the below datasets and use them for the competition. <br>
+                  >> The dataset is in the form of a csv file. <br> <br>
+                  Question .1 : Regression: Admission Chance prediction<br> <br>
+                  <!-- a button to download to file admission_chance.csv -->
+                  <a href="./admission_chance.csv" class="tm-intro-text tm-btn-primary">Admission Chance</a> <br> <br>
+                  Question .2 : Regression: Bike dataset count prediction<br> <br>
+                  <!-- a button to download to file bike_sharing.csv -->
+                  <a href="./bike_dataset.csv" class="tm-intro-text tm-btn-primary">Bike Dataset</a> <br> <br>
+                  Question .3 : Classification: Diabetes prediction<br> <br>
+                  <!-- a button to download to file diabetes.csv -->
+                  <a href="./diabetes_dataset.csv" class="tm-intro-text tm-btn-primary">Diabetes dataset</a> <br> <br> <br>
+
                   <li>Start with importing the necessary libraries like,
                     <ul>
                       <li>
@@ -183,11 +195,45 @@ Thanks!
                   </li>
                   <br>
                   <li>
-                    Then, use tensorflow library to build the model
+                    Then, use tensorflow library to build the model <br> <br>
+
+                    >>Tips on ways to optimize and make your model better  <br>
+
+Change the number of neurons in each layer  <br>
+
+Change the number of layers  <br>
+
+Change the activation functions (relu, tanh, sigmoid…)  <br>
+
+Change the optimizer when you are compiling the model (adam, Nadam)  <br>
+
+Change the number of epochs  <br>
+
+Change the learning rate within the optimizer (tf.keras.optimizers.Adam(learning_rate=0.001))  <br>
+
+Change the train_test split percentages (from 80/20 to maybe 75/25)  <br>
+
+Use “stratify” in your train_test_split() function  <br>
+
+Use kernel_regularizer='l1' in your first model layer (Do not rely on this as it can actually also harm your model)  <br>
+
+ALWAYS START wih a bigger model, which you can always make smaller after evaluating the losses.  <br> <br>
+
+>> Once done with the model paste this code for evaluation <br>
+from sklearn.metrics import precision_score, f1_score <br>
+
+p_score = precision_score(y_test, py.round(model.predict(x_test_scaled),0)) <br>
+
+fscore = f1_score(y_test, py.round(model.predict(x_test_scaled), 0)) <br>
+
+print(p_score) <br>
+
+print(fscore) <br>
+
+
                   </li>                   
                 </ul>
               </div>
-                
                 <br>
 
               </p>
